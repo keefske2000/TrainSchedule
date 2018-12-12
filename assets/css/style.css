@@ -1,0 +1,17 @@
+body{
+
+    background-image: url("../images/train.jpg");
+    background-position: center;
+    background-size: 10%;
+}
+
+h2{
+    background-color: blue;
+    color: white;
+}
+
+h3{
+    background-color: blue;
+    color: white
+}
+   
