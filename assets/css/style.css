@@ -5,6 +5,10 @@ body{
     background-size: 10%;
 }
 
+h1{
+    font-size: 100px;
+}
+
 h2{
     background-color: blue;
     color: white;
@@ -13,5 +17,9 @@ h2{
 h3{
     background-color: blue;
     color: white
+}
+
+h4{
+    font-size: 50px;
 }
    

@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <title>All Aboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
@@ -15,17 +19,23 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 </head>
 
 <body>
     <div class="container">
 
-         <div class="jumbotron jumbotron-fluid" style="color: white; text-align:center ;background-color: blue">
+        <div class="jumbotron jumbotron-fluid" style="color: white; text-align:center ;background-color: black">
             <div class="container">
                 <h1 class="display-4"></h1>
                 <h1>Train Schedule</h1>
+                <h4>All Aboard</h4>
             </div>
         </div>
 
@@ -50,7 +60,8 @@
                             <td id="empName"></td>
                             <td id="role"></td>
                             <td id="starDate"></td>
-                            <td id="monRate"></td>
+                            <td id="monthlyRate"></td>
+                            <td id="minutesAway"></td>
                         </tr>
 
 
@@ -67,161 +78,50 @@
         <div class="card">
             <div class="card-body">
                 <h3>Add Train</h3>
-        
-        <form id="databaseInput">
+
+                <form id="databaseInput">
 
 
-            <table class="table2">
-
-
-
-                <form role="form">
-                    <div class="form-group row">
-                        <label for="name-input">Train Name</label>
-                        <input class="form-control" id="name-input" type="text">
-                    </div>
-                    <div class="form-group row">
-                        <label for="startdt-input">Destination</label>
-                        <input class="form-control" id="startdt-input" type="text">
-                    </div>
-                    <div class="form-group row">
-                        <label for="role-input">First Train Time (HH:mm-military time)</label>
-                        <input class="form-control" id="role-input" type=text>
-                    </div>
-                    <div class="form-group row">
-                        <label for="monthlyRate-input">Frequency (min)</label>
-                        <input class="form-control" id="monthlyRate-input" type="number">
-                    </div>
-                    <button class="btn btn-default" id="add-user" type="submit">Submit</button>
-                </form>
+                    <table class="table2">
 
 
 
+                        <form role="form">
+                            <div class="form-group row">
+                                <label for="name-input">Train Name</label>
+                                <input class="form-control" id="name-input" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="startdt-input">Destination</label>
+                                <input class="form-control" id="startdt-input" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="role-input">First Train Time (HH:mm-military time)</label>
+                                <input class="form-control" id="role-input" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="monthlyRate-input">Frequency (min)</label>
+                                <input class="form-control" id="monthlyRate-input" type="number">
+                            </div>
+                            <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+                        </form>
 
-            </table>
 
+
+
+                    </table>
+
+            </div>
         </div>
-    </div>
 
 
 
 
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-
-    <script type="text/javascript">
-        // Initialize Firebase
-        //   var config = {
-        //     apiKey: "AIzaSyAofdEuMx3-_olrrUt4o-IvUzWaPBO9k90",
-        //     authDomain: "multiple-props-c3f92.firebaseapp.com",
-        //     databaseURL: "https://multiple-props-c3f92.firebaseio.com",
-        //     projectId: "multiple-props-c3f92",
-        //     storageBucket: "multiple-props-c3f92.appspot.com",
-        //     messagingSenderId: "147594992020"
-        //   };
-        //   firebase.initializeApp(config);
-
-        var config = {
-            apiKey: "AIzaSyBIDdh34E-xldZf7MOI5kjAfM0lSDg7BUM",
-            authDomain: "trainschedule-6cfc5.firebaseapp.com",
-            databaseURL: "https://trainschedule-6cfc5.firebaseio.com",
-            projectId: "trainschedule-6cfc5",
-            storageBucket: "trainschedule-6cfc5.appspot.com",
-            messagingSenderId: "403412441792"
-        };
-        firebase.initializeApp(config);
-
-
-
-
-        var database = firebase.database();
-
-
-
-
-
-
-        $("#add-user").on("click", function (event) {
-
-            event.preventDefault()
-
-            var inputName = $("#name-input").val()
-
-            var inputstartdate = $("#startdt-input").val()
-            var inputRole = $("#role-input").val()
-            var inputMonthly = $("#monthlyRate-input").val()
-
-            console.log(inputName)
-            console.log(inputstartdate)
-            console.log(inputRole)
-            console.log(inputMonthly)
-
-
-
-            var newEmp = {
-                name: inputName,
-                startDate: inputstartdate,
-                role: inputRole,
-                monthlyRate: inputMonthly,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-
-
-
-
-            }
-
-            database.ref().push(newEmp)
-
-
-
-
-
-
-        })
-
-        database.ref().on("child_added", function (snapshot) {
-
-            // Print the initial data to the console.
-            console.log(snapshot.val());
-
-            // Log the value of the various properties
-            var dbName = (snapshot.val().name);
-            var dbStarDate = (snapshot.val().startDate);
-            var dbRole = (snapshot.val().role);
-            var dbMonthlyRate = (snapshot.val().monthlyRate);
-
-            var tRow = $("<tr>")
-
-            var cellName = $("<td>").text(dbName)
-            var cellDate = $("<td>").text(dbStarDate)
-            var cellRole = $("<td>").text(dbRole)
-            var cellMRate = $("<td>").text(dbMonthlyRate)
-
-
-
-            tRow.append(cellName, cellDate, cellRole, cellMRate)
-
-            $("#tableBody").append(tRow);
-
-
-
-
-            // // Change the HTML
-            // $("#displayed-data").text(snapshot.val().name + " | " + snapshot.val().age + " | " + snapshot.val().phone);
-
-            // If any errors are experienced, log them to console.
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
-
-
-
-    </script>
+    <script src="../TrainSchedule/assets/javascript/train.js"></script>
 
 </body>
 
