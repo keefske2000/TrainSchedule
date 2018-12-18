@@ -10,7 +10,7 @@ To begin the application, enter what city you are leaving from, the destination 
 
 This project is maintained and was created by Kith Collins for Boot Camp Coding at GW/Trilogy Program.
 
-You can find this application here https://github.com/keefske2000/TrainSchedule.git or 
+You can find this application here https://github.com/keefske2000/TrainSchedule.git or https://keefske2000.github.io/TrainSchedule
 
 
 
